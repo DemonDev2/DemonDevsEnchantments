@@ -1,0 +1,7 @@
+{
+  "enchantment.demondev_enchantments.auto_smelt": "§cAuto Smelt",
+  "enchantment.demondev_enchantments.let_there_be_light": "§bLet There Be Light",
+  "enchantment.demondev_enchantments.magma_walker": "Magma Walker",
+  "enchantment.demondev_enchantments.auto_smelt.desc": "Automatically smelts ores when mined.",
+  "enchantment.demondev_enchantments.let_there_be_light.desc": "Grants Night Vision while the helmet is equipped."
+}
