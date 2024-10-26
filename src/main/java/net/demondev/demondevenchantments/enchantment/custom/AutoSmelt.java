@@ -26,7 +26,6 @@ public class AutoSmelt extends Enchantment {
 
     private static final Map<Block, ItemStack> SMELTABLES = new HashMap<>();
     private static final Random RANDOM = new Random();
-
     static {
         SMELTABLES.put(Blocks.IRON_ORE, new ItemStack(Items.IRON_INGOT));
         SMELTABLES.put(Blocks.DEEPSLATE_IRON_ORE, new ItemStack(Items.IRON_INGOT));
@@ -39,7 +38,7 @@ public class AutoSmelt extends Enchantment {
 
     public AutoSmelt() {
         super(Rarity.RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        MinecraftForge.EVENT_BUS.register(this); // Register event listener
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
     @Override
@@ -66,48 +65,35 @@ public class AutoSmelt extends Enchantment {
             BlockState state = event.getState();
             Level world = (Level) event.getLevel();
             Block block = state.getBlock();
-
-
             if (world.isClientSide()) return;
 
-
             if (tool.getItem() instanceof PickaxeItem && tool.getEnchantmentLevel(ModEnchantments.AUTO_SMELT.get()) > 0) {
-
-
                 if (SMELTABLES.containsKey(block)) {
-
-
                     ItemStack smeltedItem = SMELTABLES.get(block);
                     if (smeltedItem == null || smeltedItem.isEmpty()) {
                         return;
                     }
 
-
-                    int fortuneLevel = tool.getEnchantmentLevel(Enchantments.BLOCK_FORTUNE);
-                    int quantity = calculateSmeltedQuantity(fortuneLevel); // Calculate smelted quantity
-                    if (quantity <= 0) {
-                        quantity = 1;
+                    if (block == Blocks.ANCIENT_DEBRIS) {
+                        Block.popResource(world, event.getPos(), smeltedItem.copy());
+                        world.setBlock(event.getPos(), Blocks.AIR.defaultBlockState(), 11);
+                        event.setExpToDrop(2);
+                    } else {
+                        int fortuneLevel = tool.getEnchantmentLevel(Enchantments.BLOCK_FORTUNE);
+                        int quantity = calculateSmeltedQuantity(fortuneLevel);
+                        for (int i = 0; i < quantity; i++) {
+                            Block.popResource(world, event.getPos(), smeltedItem.copy());
+                        }
+                        world.setBlock(event.getPos(), Blocks.AIR.defaultBlockState(), 11);
+                        event.setExpToDrop(1 + fortuneLevel * 2);
                     }
-
-
-                    for (int i = 0; i < quantity; i++) {
-                        Block.popResource(world, event.getPos(), smeltedItem.copy()); // Ensure each dropped item is a new copy
-                    }
-
-
-                    world.setBlock(event.getPos(), Blocks.AIR.defaultBlockState(), 11);
-
-
-                    event.setExpToDrop(1 + fortuneLevel * 2);  // Adjust XP based on Fortune
                 }
             }
         }
-
-
         private static int calculateSmeltedQuantity(int fortuneLevel) {
             int baseQuantity = 1;
             if (fortuneLevel > 0) {
-                int extra = RANDOM.nextInt(fortuneLevel + 1);  // Fortune increases the chance for extra items
+                int extra = RANDOM.nextInt(fortuneLevel + 1);
                 return baseQuantity + extra;
             }
             return baseQuantity;
