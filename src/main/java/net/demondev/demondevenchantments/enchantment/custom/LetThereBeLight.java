@@ -1,5 +1,6 @@
 package net.demondev.demondevenchantments.enchantment.custom;
 
+import net.demondev.demondevenchantments.DemonDevEnchantments;
 import net.demondev.demondevenchantments.enchantment.ModEnchantments;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -31,7 +32,7 @@ public class LetThereBeLight extends Enchantment {
         return stack.getItem() instanceof ArmorItem && ((ArmorItem) stack.getItem()).getEquipmentSlot() == EquipmentSlot.HEAD;
     }
 
-    @Mod.EventBusSubscriber(modid = "demondev_enchantments", bus = Mod.EventBusSubscriber.Bus.FORGE)
+    @Mod.EventBusSubscriber(modid = DemonDevEnchantments.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static class LetThereBeLightHandler {
 
         @SubscribeEvent
@@ -40,7 +41,7 @@ public class LetThereBeLight extends Enchantment {
             ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
             if (helmet.isEnchanted() && helmet.getEnchantmentLevel(ModEnchantments.LET_THERE_BE_LIGHT.get()) > 0) {
                 MobEffectInstance nightVision = player.getEffect(MobEffects.NIGHT_VISION);
-                if (nightVision == null || nightVision.getDuration() <= 200) {  // Reapply if it's missing or about to expire
+                if (nightVision == null || nightVision.getDuration() <= 200) {
                     player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 400, 0, false, false));
                 }
             } else {
