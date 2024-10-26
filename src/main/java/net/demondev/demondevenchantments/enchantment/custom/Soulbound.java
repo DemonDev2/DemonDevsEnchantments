@@ -15,6 +15,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,17 +31,17 @@ public class Soulbound extends Enchantment {
     }
 
     @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack) {
+    public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
         return false;
     }
 
     @Override
-    public boolean canEnchant(ItemStack stack) {
+    public boolean canEnchant(@NotNull ItemStack stack) {
         return true;
     }
 
     @Override
-    protected boolean checkCompatibility(Enchantment ench) {
+    protected boolean checkCompatibility(@NotNull Enchantment ench) {
         return super.checkCompatibility(ench) && ench != Enchantments.VANISHING_CURSE;
     }
 

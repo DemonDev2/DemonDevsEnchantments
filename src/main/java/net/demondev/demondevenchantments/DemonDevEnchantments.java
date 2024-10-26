@@ -19,7 +19,6 @@ import org.slf4j.Logger;
 @Mod(DemonDevEnchantments.MOD_ID)
 public class DemonDevEnchantments
 {
-
     public static final String MOD_ID = "demondev_enchantments";
     private static final Logger LOGGER = LogUtils.getLogger();
     public DemonDevEnchantments()

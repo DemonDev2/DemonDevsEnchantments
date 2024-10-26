@@ -37,7 +37,7 @@ public class AutoSmelt extends Enchantment {
     }
 
     public AutoSmelt() {
-        super(Rarity.RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+        super(Rarity.VERY_RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
         MinecraftForge.EVENT_BUS.register(this);
     }
 

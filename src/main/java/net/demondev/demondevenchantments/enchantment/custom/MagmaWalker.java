@@ -17,6 +17,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,8 +31,8 @@ public class MagmaWalker extends Enchantment {
     }
 
     @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return stack.getItem() instanceof ArmorItem && ((ArmorItem) stack.getItem()).getEquipmentSlot() == EquipmentSlot.FEET;
+    public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
+        return false;
     }
 
     @Override

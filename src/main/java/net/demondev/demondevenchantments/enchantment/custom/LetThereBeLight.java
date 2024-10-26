@@ -14,6 +14,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.NotNull;
 
 public class LetThereBeLight extends Enchantment {
 
@@ -23,8 +24,8 @@ public class LetThereBeLight extends Enchantment {
     }
 
     @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return stack.getItem() instanceof ArmorItem && ((ArmorItem) stack.getItem()).getEquipmentSlot() == EquipmentSlot.HEAD;
+    public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
+        return false;
     }
 
     @Override
