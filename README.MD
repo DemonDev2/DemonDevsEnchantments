@@ -1,4 +1,4 @@
-![Logo](https://media.forgecdn.net/attachments/1000/525/demondevs_enchantments.png)
+![Logo](./assets/demondevs_enchantments.png)
 # DemonDev's Enchantments
 DemonDev's Enchantments is a Forge mod that adds a bunch of Custom Enchantments to Minecraft. 
 
