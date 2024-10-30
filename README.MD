@@ -7,7 +7,7 @@ DemonDev's Enchantments is a Forge mod that adds a bunch of Custom Enchantments 
 * Let There Be Light: Gives night vision when helmet is equipped
 * Soulbound: Allows player to keep enchanted item upon death also give Resistance when the player respawns.
 
-[![Watch the video](https://img.youtube.com/vi/T-D1KVIuvjA/maxresdefault.jpg)](https://youtu.be/mGJczA5E1Js?si=SeTmjWCc3f5pbqhp)
+[![Watch the video](https://img.youtube.com/vi/v=mGJczA5E1Js&t/maxresdefault.jpg)](https://youtu.be/mGJczA5E1Js?si=SeTmjWCc3f5pbqhp)
 
 [![Discord](https://img.icons8.com/?size=50&id=65646&format=png&color=000000)](https://discord.com/invite/wWu76mzAyS) [![KoFi](https://img.icons8.com/?size=50&id=aE4hnRenCYJB&format=png&color=000000)](https://ko-fi.com/demondev0666) [![Youtube](https://img.icons8.com/?size=50&id=19318&format=png&color=000000)](https://www.youtube.com/@demondevmc)
 
