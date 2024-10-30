@@ -57,7 +57,9 @@ public class AutoSmelt extends Enchantment {
             BlockState state = event.getState();
             Level world = (Level) event.getLevel();
             Block block = state.getBlock();
-            if (world.isClientSide()) return;
+            if (world.isClientSide()) {
+                return;
+            }
             if (block.defaultBlockState().is(Tags.Blocks.ORES)) {
                 if (tool.getItem() instanceof PickaxeItem && tool.getEnchantmentLevel(ModEnchantments.AUTO_SMELT.get()) > 0) {
                     Optional<SmeltingRecipe> smeltingRecipe = world.getRecipeManager().getRecipeFor(RecipeType.SMELTING, new SimpleContainer(new ItemStack(block.asItem())), world);

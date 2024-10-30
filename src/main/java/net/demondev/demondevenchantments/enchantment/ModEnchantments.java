@@ -1,10 +1,7 @@
 package net.demondev.demondevenchantments.enchantment;
 
 import net.demondev.demondevenchantments.DemonDevEnchantments;
-import net.demondev.demondevenchantments.enchantment.custom.AutoSmelt;
-import net.demondev.demondevenchantments.enchantment.custom.LetThereBeLight;
-import net.demondev.demondevenchantments.enchantment.custom.MagmaWalker;
-import net.demondev.demondevenchantments.enchantment.custom.Soulbound;
+import net.demondev.demondevenchantments.enchantment.custom.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -23,6 +20,8 @@ public class ModEnchantments {
             MagmaWalker::new);
     public static final RegistryObject<Enchantment> SOULBOUND = ENCHANTMENTS.register("soulbound",
             Soulbound::new);
+    public static final RegistryObject<Enchantment> THUNDERSTRUCK = ENCHANTMENTS.register("thunderstruck",
+            ThunderStruck::new);
 
 
 

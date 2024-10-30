@@ -1,5 +1,6 @@
 package net.demondev.demondevenchantments.enchantment.custom;
 
+import net.demondev.demondevenchantments.DemonDevEnchantments;
 import net.demondev.demondevenchantments.block.ModBlocks;
 import net.demondev.demondevenchantments.enchantment.ModEnchantments;
 import net.minecraft.core.BlockPos;
@@ -41,7 +42,7 @@ public class MagmaWalker extends Enchantment {
     }
 
 
-    @Mod.EventBusSubscriber(modid = "demondev_enchantments", bus = Mod.EventBusSubscriber.Bus.FORGE)
+    @Mod.EventBusSubscriber(modid = DemonDevEnchantments.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static class MagmaWalkerHandler {
         @SubscribeEvent
         public static void onPlayerTick(TickEvent.PlayerTickEvent event) {

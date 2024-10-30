@@ -17,48 +17,46 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
 @Mod(DemonDevEnchantments.MOD_ID)
-public class DemonDevEnchantments
-{
+public class DemonDevEnchantments {
     public static final String MOD_ID = "demondev_enchantments";
     private static final Logger LOGGER = LogUtils.getLogger();
-    public DemonDevEnchantments()
-    {
+
+    public DemonDevEnchantments() {
+        // Get the mod event bus
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-
+        // Register blocks, items, enchantments, and loot modifiers
         ModBlocks.register(modEventBus);
         ModItems.register(modEventBus);
         ModEnchantments.register(modEventBus);
+
+        // Add common setup listener
         modEventBus.addListener(this::commonSetup);
 
-
-
+        // Register event listeners
         MinecraftForge.EVENT_BUS.register(this);
-
-
         modEventBus.addListener(this::addCreative);
-
-
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event)
-    {}
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        // Common setup tasks can go here
+    }
 
-
-    private void addCreative(BuildCreativeModeTabContentsEvent event)
-    {}
-
+    private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        // Logic for adding custom items to creative tabs
+    }
 
     @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event)
-    {}
+    public void onServerStarting(ServerStartingEvent event) {
+        // Code to execute when the server is starting
+    }
 
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
+    // Register client-side events (e.g., rendering setup)
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents
-    {
+    public static class ClientModEvents {
         @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event)
-        {}
+        public static void onClientSetup(FMLClientSetupEvent event) {
+            // Client setup tasks (e.g., rendering setups)
+        }
     }
 }
