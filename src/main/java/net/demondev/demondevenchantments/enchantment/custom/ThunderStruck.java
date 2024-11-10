@@ -50,28 +50,20 @@ public class ThunderStruck extends Enchantment {
     @SubscribeEvent
     public static void onProjectileImpact(ProjectileImpactEvent event) {
         Entity projectile = event.getProjectile();
-        Level world = projectile.level(); // Using level() method instead of level field
-
-        // Ensure we are only working with arrows
+        Level world = projectile.level();
         if (projectile instanceof AbstractArrow arrow && !world.isClientSide()) {
             if (arrow.getOwner() instanceof Player player) {
                 ItemStack bow = player.getMainHandItem();
-
-                // Check if the bow has the Thunderstruck enchantment
                 if (bow.getEnchantmentLevel(ModEnchantments.THUNDERSTRUCK.get()) > 0) {
-                    // Check if the hit result type is ENTITY
                     if (event.getRayTraceResult().getType() == HitResult.Type.ENTITY) {
-                        // Cast to EntityHitResult to access the entity
                         if (event.getRayTraceResult() instanceof EntityHitResult entityHitResult) {
                             Entity hitEntity = entityHitResult.getEntity();
-
-                            // Summon lightning at the entity's position
                             if (world instanceof ServerLevel serverWorld) {
-                                Vec3 hitPos = hitEntity.position(); // Get the position of the entity that was hit
+                                Vec3 hitPos = hitEntity.position();
                                 LightningBolt lightningBolt = EntityType.LIGHTNING_BOLT.create(serverWorld);
                                 assert lightningBolt != null;
-                                lightningBolt.moveTo(hitPos.x, hitPos.y, hitPos.z); // Position the lightning at the hit entity
-                                serverWorld.addFreshEntity(lightningBolt); // Add the lightning entity to the world
+                                lightningBolt.moveTo(hitPos.x, hitPos.y, hitPos.z);
+                                serverWorld.addFreshEntity(lightningBolt);
                             }
                         }
                     }

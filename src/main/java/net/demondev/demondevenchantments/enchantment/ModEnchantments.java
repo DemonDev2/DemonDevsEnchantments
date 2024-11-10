@@ -22,6 +22,8 @@ public class ModEnchantments {
             Soulbound::new);
     public static final RegistryObject<Enchantment> THUNDERSTRUCK = ENCHANTMENTS.register("thunderstruck",
             ThunderStruck::new);
+    public static final RegistryObject<Enchantment> FORGOTTEN_FORTUNE = ENCHANTMENTS.register("forgotten_fortune",
+            ForgottenFortune::new);
 
 
 

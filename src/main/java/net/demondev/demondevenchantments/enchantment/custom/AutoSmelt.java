@@ -20,6 +20,7 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 import java.util.Random;
@@ -44,7 +45,7 @@ public class AutoSmelt extends Enchantment {
     }
 
     @Override
-    protected boolean checkCompatibility(Enchantment ench) {
+    protected boolean checkCompatibility(@NotNull Enchantment ench) {
         return super.checkCompatibility(ench) && ench != Enchantments.SILK_TOUCH;
     }
 
@@ -56,17 +57,20 @@ public class AutoSmelt extends Enchantment {
             ItemStack tool = event.getPlayer().getMainHandItem();
             BlockState state = event.getState();
             Level world = (Level) event.getLevel();
-            Block block = state.getBlock();
+
             if (world.isClientSide()) {
                 return;
             }
-            if (block.defaultBlockState().is(Tags.Blocks.ORES)) {
+
+            if (state.is(Tags.Blocks.ORES)) {
                 if (tool.getItem() instanceof PickaxeItem && tool.getEnchantmentLevel(ModEnchantments.AUTO_SMELT.get()) > 0) {
-                    Optional<SmeltingRecipe> smeltingRecipe = world.getRecipeManager().getRecipeFor(RecipeType.SMELTING, new SimpleContainer(new ItemStack(block.asItem())), world);
+                    Optional<SmeltingRecipe> smeltingRecipe = world.getRecipeManager()
+                            .getRecipeFor(RecipeType.SMELTING, new SimpleContainer(new ItemStack(state.getBlock().asItem())), world);
+
                     smeltingRecipe.ifPresent(recipe -> {
                         ItemStack smeltedItem = recipe.getResultItem(world.registryAccess());
                         if (!smeltedItem.isEmpty()) {
-                            int quantity = calculateSmeltedQuantity(tool, block);
+                            int quantity = calculateSmeltedQuantity(tool);
                             for (int i = 0; i < quantity; i++) {
                                 Block.popResource(world, event.getPos(), smeltedItem.copy());
                             }
@@ -77,17 +81,11 @@ public class AutoSmelt extends Enchantment {
                 }
             }
         }
-        private static int calculateSmeltedQuantity(ItemStack tool, Block block) {
+
+        private static int calculateSmeltedQuantity(ItemStack tool) {
             int baseQuantity = 1;
-            if (block == Blocks.ANCIENT_DEBRIS) {
-                return baseQuantity;
-            }
             int fortuneLevel = tool.getEnchantmentLevel(Enchantments.BLOCK_FORTUNE);
-            if (fortuneLevel > 0) {
-                int extra = RANDOM.nextInt(fortuneLevel + 1);
-                return baseQuantity + extra;
-            }
-            return baseQuantity;
+            return baseQuantity + (fortuneLevel > 0 ? RANDOM.nextInt(fortuneLevel + 1) : 0);
         }
     }
 }
