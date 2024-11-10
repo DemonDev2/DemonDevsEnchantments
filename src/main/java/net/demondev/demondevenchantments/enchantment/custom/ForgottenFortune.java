@@ -38,8 +38,8 @@ public class ForgottenFortune extends Enchantment {
         MinecraftForge.EVENT_BUS.register(new LootEventHandler());
     }
     @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return stack.getItem() instanceof PickaxeItem;
+    public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
+        return false;
     }
 
     @Override

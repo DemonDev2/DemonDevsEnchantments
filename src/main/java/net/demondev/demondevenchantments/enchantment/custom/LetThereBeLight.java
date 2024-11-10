@@ -25,7 +25,7 @@ public class LetThereBeLight extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return false;
+        return true;
     }
 
     @Override
